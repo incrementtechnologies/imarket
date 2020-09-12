@@ -17,8 +17,8 @@ class ProductController extends APIController
     public $inventoryController = 'Increment\Imarket\Product\Http\ProductInventoryController';
     public $productTraceController = 'Increment\Imarket\Trace\Http\ProductTraceController';
     public $merchantController = 'Increment\Imarket\Merchant\Http\MerchantController';
-    public $bundledProductController = 'Increment\Imarket\Bundled\Http\BundledProductController';
-    public $bundledSettingController = 'Increment\Imarket\Bundled\Http\BundledSettingController';
+    // public $bundledProductController = 'Increment\Imarket\Bundled\Http\BundledProductController';
+    // public $bundledSettingController = 'Increment\Imarket\Bundled\Http\BundledSettingController';
     function __construct(){
     	$this->model = new Product();
       $this->notRequired = array(
@@ -180,8 +180,8 @@ class ProductController extends APIController
           $result[$i]['images'] = app($this->productImageController)->getProductImage($result[$i]['id'], null);
           $result[$i]['tag_array'] = $this->manageTags($result[$i]['tags']);
           $result[$i]['created_at_human'] = Carbon::createFromFormat('Y-m-d H:i:s', $result[$i]['created_at'])->copy()->tz($this->response['timezone'])->format('F j, Y H:i A');
-          $result[$i]['bundled_products'] = app($this->bundledProductController)->getByParams('product_id', $result[$i]['id']);
-          $result[$i]['bundled_settings'] = app($this->bundledSettingController)->getByParams('bundled', $result[$i]['id']);
+          // $result[$i]['bundled_products'] = app($this->bundledProductController)->getByParams('product_id', $result[$i]['id']);
+          // $result[$i]['bundled_settings'] = app($this->bundledSettingController)->getByParams('bundled', $result[$i]['id']);
           if($accountId !== null){
             $result[$i]['wishlist_flag'] = app($this->wishlistController)->checkWishlist($result[$i]['id'], $accountId);
             // $result[$i]['checkout_flag'] = app($this->checkoutController)->checkCheckout($result[$i]['id'], $accountId); 
